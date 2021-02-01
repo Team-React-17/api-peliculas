@@ -24,3 +24,14 @@ yarn-error.log*
 
 #eslint
 .eslintcache
+
+# env
+.env
+
+# ides
+.idea
+.vscode
+
+#others
+.npmrc
+.log
