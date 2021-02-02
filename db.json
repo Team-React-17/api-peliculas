@@ -3,7 +3,7 @@
     {
       "id": 1,
       "username": "fake_username",
-      "email": "fake_email@gmail.com",
+      "email": "fakeemail@gmail.com",
       "password": "fakepass"
     }
   ]
