@@ -36,6 +36,13 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         run: npm install
 
+      - name: set env REACT_APP_HOST_API
+        if: github.ref == 'refs/heads/develop'
+        run: export REACT_APP_HOST_API=https://my-json-server.typicode.com/team-react-17/backend-peliculas
+      - name: set env REACT_APP_PATH_USER
+        if: github.ref == 'refs/heads/develop'
+        run: export REACT_APP_PATH_USER=users
+
       - name: Build
         if: github.ref == 'refs/heads/develop'
         run: npm run build
@@ -48,8 +55,8 @@ jobs:
           git remote set-url origin https://${github_token}@github.com/${repository}
           npm run deploy
         env:
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
 
@@ -58,7 +65,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.9.9
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "prod-api-peliculas"
-          heroku_email: "teamreact17@gmail.com"
-          team: "Team-React-17"
-          branch: "master"
+          heroku_app_name: 'prod-api-peliculas'
+          heroku_email: 'teamreact17@gmail.com'
+          team: 'Team-React-17'
+          branch: 'master'
