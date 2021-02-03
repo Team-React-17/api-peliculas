@@ -48,17 +48,19 @@ jobs:
           git remote set-url origin https://${github_token}@github.com/${repository}
           npm run deploy
         env:
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
+          REACT_APP_HOST_API: ${{ secrets.REACT_APP_HOST_API }}
+          REACT_APP_PATH_USER: ${{ secrets.REACT_APP_PATH_USER}}
 
       - name: Deploy Production
         if: github.ref == 'refs/heads/master'
         uses: akhileshns/heroku-deploy@v3.9.9
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "prod-api-peliculas"
-          heroku_email: "teamreact17@gmail.com"
-          team: "Team-React-17"
-          branch: "master"
+          heroku_app_name: 'prod-api-peliculas'
+          heroku_email: 'teamreact17@gmail.com'
+          team: 'Team-React-17'
+          branch: 'master'
