@@ -122,6 +122,8 @@ const SignUp: FC = () => {
       return;
     }
 
+    setMsg('');
+    localStorage.setItem('isLogin', 'true');
     history.replace('/movies');
   };
 
@@ -156,75 +158,81 @@ const SignUp: FC = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper elevation={5}>
-        <div>
-          <form
-            className={classes.inputs}
-            noValidate
-            autoComplete="off"
-            onSubmit={onSumbit}
-          >
-            <Typography className="title" variant="h6">
-              Sign Up
-            </Typography>
-            <TextField
-              error={error.username}
-              type="input"
-              id="username"
-              variant="standard"
-              label="Nombre de usuario"
-              onChange={onChange}
-            />
-            <TextField
-              error={error.email}
-              type="input"
-              id="email"
-              variant="standard"
-              label="Correo Electrónico"
-              onChange={onChange}
-            />
-            <TextField
-              error={error.password}
-              type="password"
-              id="password"
-              variant="standard"
-              label="Clave"
-              onChange={onChange}
-            />
-            <TextField
-              error={error.password}
-              type="password"
-              id="confirm"
-              variant="standard"
-              label="Confirmar Clave"
-              onChange={onChange}
-            />
-            <Button
-              className="buttons-form"
-              variant="contained"
-              color="primary"
+    <div className="signup-container">
+      <div className={classes.root}>
+        <Paper elevation={5}>
+          <div>
+            <form
+              className={classes.inputs}
+              noValidate
+              autoComplete="off"
+              onSubmit={onSumbit}
             >
-              Sign Up
-            </Button>
-            <br />
-            <Typography className="title" variant="h6">
-              Do you already have an account?
-            </Typography>
-            <br />
-            <Button className="buttons-form" variant="outlined" color="primary">
-              <Link to="/" className={classes.anchor}>
-                Sign In
-              </Link>
-            </Button>
-          </form>
-          {msg !== '' && (
-            <Alert severity="error" className={classes.message}>
-              {msg}
-            </Alert>
-          )}
-        </div>
-      </Paper>
+              <Typography className="title" variant="h6">
+                Sign Up
+              </Typography>
+              <TextField
+                error={error.username}
+                type="input"
+                id="username"
+                variant="standard"
+                label="Nombre de usuario"
+                onChange={onChange}
+              />
+              <TextField
+                error={error.email}
+                type="input"
+                id="email"
+                variant="standard"
+                label="Correo Electrónico"
+                onChange={onChange}
+              />
+              <TextField
+                error={error.password}
+                type="password"
+                id="password"
+                variant="standard"
+                label="Clave"
+                onChange={onChange}
+              />
+              <TextField
+                error={error.password}
+                type="password"
+                id="confirm"
+                variant="standard"
+                label="Confirmar Clave"
+                onChange={onChange}
+              />
+              <Button
+                className="buttons-form"
+                variant="contained"
+                color="primary"
+              >
+                Sign Up
+              </Button>
+              <br />
+              <Typography className="title" variant="h6">
+                Do you already have an account?
+              </Typography>
+              <br />
+              <Button
+                className="buttons-form"
+                variant="outlined"
+                color="primary"
+              >
+                <Link to="/" className={classes.anchor}>
+                  Sign In
+                </Link>
+              </Button>
+            </form>
+            {msg !== '' && (
+              <Alert severity="error" className={classes.message}>
+                {msg}
+              </Alert>
+            )}
+          </div>
+        </Paper>
+      </div>
     </div>
   );
 };
