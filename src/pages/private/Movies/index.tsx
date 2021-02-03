@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Header from '../../../components/Header/Header';
 import Search from '../../../components/Search/Search';
+import Carousel from '../../../components/Carousel/Carousel';
 
 const Movies: FC = () => {
   const history = useHistory();
@@ -20,6 +21,7 @@ const Movies: FC = () => {
     >
       <Header />
       <Search />
+      <Carousel />
     </Container>
   );
 };
