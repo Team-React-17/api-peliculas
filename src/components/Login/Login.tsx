@@ -18,13 +18,20 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(1),
         width: theme.spacing(50),
-        height: theme.spacing(50)
+        height: 'auto'
       }
     },
     inputs: {
+      paddingBottom: 53,
       '& > *': {
         margin: theme.spacing(2)
       }
+    },
+    message: {
+      marginTop: -25,
+      marginBottom: 25,
+      justifyContent: 'center',
+      height: '100'
     }
   })
 );
@@ -116,8 +123,12 @@ const Login: FC = () => {
             <Button className="buttons-form" variant="outlined" color="primary">
               Sign Up
             </Button>
-            {msg !== '' && <Alert severity="error">{msg}</Alert>}
           </form>
+          {msg !== '' && (
+            <Alert severity="error" className={classes.message}>
+              {msg}
+            </Alert>
+          )}
         </div>
       </Paper>
     </div>
