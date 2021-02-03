@@ -38,11 +38,10 @@ jobs:
 
       - name: set env REACT_APP_HOST_API
         if: github.ref == 'refs/heads/develop'
-        run: export REACT_APP_HOST_API=${{secrets.REACT_APP_HOST_API}}
-
+        run: export REACT_APP_HOST_API=https://my-json-server.typicode.com/team-react-17/backend-peliculas
       - name: set env REACT_APP_PATH_USER
         if: github.ref == 'refs/heads/develop'
-        run: export REACT_APP_PATH_USER=${{secrets.REACT_APP_PATH_USER}}
+        run: export REACT_APP_PATH_USER=users
 
       - name: Build
         if: github.ref == 'refs/heads/develop'
