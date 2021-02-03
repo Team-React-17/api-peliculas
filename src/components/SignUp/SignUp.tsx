@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
     anchor: {
       textDecoration: 'none',
       color: '#3F51B5'
+    },
+    field: {
+      margin: '10px'
     }
   })
 );
@@ -172,6 +175,7 @@ const SignUp: FC = () => {
                 Sign Up
               </Typography>
               <TextField
+                className={classes.field}
                 error={error.username}
                 type="input"
                 id="username"
@@ -180,6 +184,7 @@ const SignUp: FC = () => {
                 onChange={onChange}
               />
               <TextField
+                className={classes.field}
                 error={error.email}
                 type="input"
                 id="email"
@@ -188,6 +193,7 @@ const SignUp: FC = () => {
                 onChange={onChange}
               />
               <TextField
+                className={classes.field}
                 error={error.password}
                 type="password"
                 id="password"
@@ -196,6 +202,7 @@ const SignUp: FC = () => {
                 onChange={onChange}
               />
               <TextField
+                className={classes.field}
                 error={error.password}
                 type="password"
                 id="confirm"
@@ -211,14 +218,14 @@ const SignUp: FC = () => {
                 Sign Up
               </Button>
               <br />
-              <Typography className="title" variant="h6">
+              <p className="text-info">
                 Do you already have an account?
-              </Typography>
-              <br />
+              </p>
               <Button
                 className="buttons-form"
                 variant="outlined"
                 color="primary"
+                onClick={() => history.push('/')}
               >
                 <Link to="/" className={classes.anchor}>
                   Sign In

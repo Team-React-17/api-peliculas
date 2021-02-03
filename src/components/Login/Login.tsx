@@ -135,6 +135,7 @@ const Login: FC = () => {
                 className="buttons-form"
                 variant="outlined"
                 color="primary"
+                onClick={() => history.push('/sign-up')}
               >
                 <Link to="/sign-up" className={classes.anchor}>
                   Sign Up
