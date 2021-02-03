@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: 25,
       justifyContent: 'center',
       height: '100'
+    },
+    anchor: {
+      textDecoration: 'none',
+      color: '#3F51B5'
     }
   })
 );
@@ -120,8 +124,11 @@ const Login: FC = () => {
               Sign In
             </Button>
             <br />
+
             <Button className="buttons-form" variant="outlined" color="primary">
-              Sign Up
+              <Link to="/sign-up" className={classes.anchor}>
+                Sign Up
+              </Link>
             </Button>
           </form>
           {msg !== '' && (
