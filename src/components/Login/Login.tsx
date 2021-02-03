@@ -106,7 +106,7 @@ const Login: FC = () => {
             />
             <TextField
               error={error.password}
-              type="input"
+              type="password"
               id="password"
               variant="standard"
               label="password"
