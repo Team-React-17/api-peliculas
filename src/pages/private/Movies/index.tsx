@@ -15,7 +15,7 @@ const Movies: FC = () => {
   }
   return (
     <Container
-      style={{ backgroundColor: 'white', padding: '0px', height: '100vh' }}
+      style={{ backgroundColor: 'white', padding: '0px', height: 'auto' }}
       className="container-movies"
       maxWidth="lg"
     >
