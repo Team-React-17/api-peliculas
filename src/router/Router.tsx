@@ -6,16 +6,14 @@ import Login from '../components/Login/Login';
 import Movies from '../pages/private/Movies';
 
 const Router = () => (
-  <div>
-    <Switch>
-      <PublicRouter path="/login" component={Login} />
-      <PublicRouter path="/sign-up" component={SignUp} />
+  <Switch>
+    <PublicRouter path="/login" component={Login} />
+    <PublicRouter path="/sign-up" component={SignUp} />
 
-      <PrivateRouter path="/" exact component={Movies} />
+    <PrivateRouter path="/" exact component={Movies} />
 
-      <Redirect from="*" to="/" />
-    </Switch>
-  </div>
+    <Redirect from="*" to="/" />
+  </Switch>
 );
 
 export default Router;
