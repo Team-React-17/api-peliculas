@@ -10,6 +10,7 @@ import SignUpHook from '../../hooks/SignUp/signup';
 import { db } from '../../environment/environment';
 import './SignUp.scss';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,6 +52,7 @@ const minLength = 8;
 const SignUp: FC = () => {
   const history = useHistory();
   const classes = useStyles();
+  const { setAuth } = useAuth();
 
   const { error, setError, msg, setMsg } = SignUpHook();
 
@@ -120,14 +122,15 @@ const SignUp: FC = () => {
     });
     const postUserResponse = await postUserRequest.json();
 
-    if (postUserResponse.length === 0) {
+    if (!postUserResponse) {
       setMsg('Something went wrong, please try again later.');
       return;
     }
-
     setMsg('');
-    localStorage.setItem('isLogin', 'true');
-    history.replace('/movies');
+    // @ts-ignore
+    delete postUserRequest.password;
+    setAuth({ user: postUserRequest, isLogged: true });
+    history.replace('/');
   };
 
   const onSumbit = (e: any) => {

@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useAuth } from '../../hooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,15 +27,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header: FC = () => {
   const classes = useStyles();
-
+  const { auth, setAuth } = useAuth();
   const history = useHistory();
-  const [auth, setAuth] = useState(true);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -42,8 +39,8 @@ const Header: FC = () => {
 
   const handleClose = (e: any) => {
     if (e.target.id === 'logout') {
-      localStorage.setItem('isLogin', 'false');
-      history.replace('/');
+      setAuth({user: {}, isLogged: false});
+      history.push('/login');
     }
     setAnchorEl(null);
   };

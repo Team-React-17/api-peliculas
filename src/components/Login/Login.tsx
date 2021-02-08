@@ -6,7 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
-import LoginHook from '../../hooks/Login/login';
+import LoginHook from '../../hooks/Login/login'
+import { useAuth } from '../../hooks';
 import { db } from '../../environment/environment';
 import './Login.scss';
 
@@ -47,12 +48,9 @@ const MinLength = 8;
 const Login: FC = () => {
   const history = useHistory();
   const classes = useStyles();
+  const { setAuth } = useAuth();
 
   const { error, setError, msg, setMsg } = LoginHook();
-
-  if (localStorage.getItem('isLogin') === 'true') {
-    history.replace('/movies');
-  }
 
   const onChange = (e: any) => {
     const val = e.target.value;
@@ -74,8 +72,10 @@ const Login: FC = () => {
       return;
     }
     setMsg('');
-    localStorage.setItem('isLogin', 'true');
-    history.replace('/movies');
+    const [ user ] = response;
+    delete user.password;
+    setAuth({user, isLogged: true});
+    history.replace('/');
   };
   const onSumbit = (e: any) => {
     e.preventDefault();
