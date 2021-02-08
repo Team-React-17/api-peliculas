@@ -1,11 +1,26 @@
-import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { FC, useCallback, useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Search from '../../../components/Search/Search';
 import Carousel from '../../../components/Carousel/Carousel';
+import { MovieGrid, Section } from '../../../components';
+import api from '../../../services/api';
 
 const Movies: FC = () => {
-  const history = useHistory();
+  const [movies, setMovies] = useState<any>([]);
+
+  const getLatestMovies = useCallback(async () => {
+    try {
+      await api.getLatestMovies().then((response: any) => {
+        setMovies(response.data.results);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    getLatestMovies();
+  }, [])
 
   return (
     <Container
@@ -15,6 +30,9 @@ const Movies: FC = () => {
     >
       <Search />
       <Carousel />
+      <Section title="Latest Movies">
+        <MovieGrid itemLIst={movies} />
+      </Section>
     </Container>
   );
 };
