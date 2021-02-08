@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 import Hooks from '../../hooks/Carousel/Carousel';
-import { db } from '../../environment/environment';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Typography from '@material-ui/core/Typography';
+import api from '../../services/api';
 
 const useStyles = makeStyles({
   root: {
@@ -31,25 +31,21 @@ const Carousel: FC = () => {
   const { index, setIndex, movies, setMovies } = Hooks();
   const [imagesEndpoint] = useState('https://image.tmdb.org/t/p/w780');
 
+  const getUpcomingMovies = async () => {
+    try {
+      await api.getUpcomingMovies().then(response => {
+        setMovies(response.data.results.slice(0, 5));
+      } )
+    } catch (error){
+      console.error(error);
+    }
+  }
+
+  console.log(movies);
+
   useEffect(() => {
-    const request = async () => {
-      const endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${db.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
-      const request = await fetch(endpoint);
-      const data = await request.json();
-
-      return data;
-    };
-
-    const movies_data: Array<any> = [];
-
-    request().then((data) => {
-      for (let i = 0; i < 5; i++) {
-        movies_data.push(data.results[i]);
-      }
-
-      setMovies(movies_data);
-    });
-  }, [setMovies]);
+    getUpcomingMovies();
+  }, []);
 
   return (
     <div className={classes.root}>
