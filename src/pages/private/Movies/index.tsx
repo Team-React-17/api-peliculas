@@ -20,7 +20,7 @@ const Movies: FC = () => {
 
   useEffect(() => {
     getLatestMovies();
-  }, [])
+  }, []);
 
   return (
     <Container
@@ -29,7 +29,9 @@ const Movies: FC = () => {
       maxWidth="lg"
     >
       <Search />
-      <Carousel />
+      <Section title="Featured">
+        <Carousel />
+      </Section>
       <Section title="Latest Movies">
         <MovieGrid itemLIst={movies} />
       </Section>
