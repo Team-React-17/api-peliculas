@@ -6,10 +6,10 @@ const useStyles = makeStyles({
   container: {
     marginTop: 20,
     paddingTop: 20,
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   divider: {
-    marginBottom: 20,
+    marginBottom: 20
   }
 });
 
@@ -24,7 +24,7 @@ export const Section: FunctionComponent<Props> = ({ children, title }) => {
   return (
     <Container className={classes.container}>
       <Typography variant="h4">{title}</Typography>
-      <Divider className={classes.divider}/>
+      <Divider className={classes.divider} />
       {children}
     </Container>
   );
