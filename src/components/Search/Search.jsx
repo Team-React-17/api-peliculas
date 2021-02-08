@@ -6,7 +6,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       width: 200,
       textAlign: 'center'
-    }
+    },
+    marginTop: 0,
+    paddingTop: 10,
   }
 }));
 
