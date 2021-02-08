@@ -5,6 +5,8 @@ import SignUp from '../../../components/SignUp/SignUp';
 import Movies from '../../private/Movies/index';
 import './Main.scss';
 
+// Todo: Login and SignUp must be moved to pages
+
 const Main: FC = () => (
   <div className="Main">
     <Router>
