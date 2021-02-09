@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
-import LoginHook from '../../hooks/Login/login';
+import LoginHook from '../../hooks/Login/login'
+import { useAuth } from '../../hooks';
 import { db } from '../../environment/environment';
 import './Login.scss';
 
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+      minHeight: '450px',
       '& > *': {
         margin: theme.spacing(1),
         width: theme.spacing(50),
@@ -32,6 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: 25,
       justifyContent: 'center',
       height: '100'
+    },
+    anchor: {
+      textDecoration: 'none',
+      color: '#3F51B5'
     }
   })
 );
@@ -42,6 +48,7 @@ const MinLength = 8;
 const Login: FC = () => {
   const history = useHistory();
   const classes = useStyles();
+  const { setAuth } = useAuth();
 
   const { error, setError, msg, setMsg } = LoginHook();
 
@@ -65,7 +72,10 @@ const Login: FC = () => {
       return;
     }
     setMsg('');
-    history.replace('/movies');
+    const [ user ] = response;
+    delete user.password;
+    setAuth({user, isLogged: true});
+    history.replace('/');
   };
   const onSumbit = (e: any) => {
     e.preventDefault();
@@ -84,53 +94,62 @@ const Login: FC = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper elevation={5}>
-        <div>
-          <form
-            className={classes.inputs}
-            noValidate
-            autoComplete="off"
-            onSubmit={onSumbit}
-          >
-            <Typography className="title" variant="h6">
-              Login
-            </Typography>
-            <TextField
-              error={error.email}
-              type="input"
-              id="email"
-              variant="standard"
-              label="correo"
-              onChange={onChange}
-            />
-            <TextField
-              error={error.password}
-              type="password"
-              id="password"
-              variant="standard"
-              label="password"
-              onChange={onChange}
-            />
-            <Button
-              className="buttons-form"
-              variant="contained"
-              color="primary"
+    <div className="login-container">
+      <div className={classes.root}>
+        <Paper elevation={5}>
+          <div>
+            <form
+              className={classes.inputs}
+              noValidate
+              autoComplete="off"
+              onSubmit={onSumbit}
             >
-              Sign In
-            </Button>
-            <br />
-            <Button className="buttons-form" variant="outlined" color="primary">
-              Sign Up
-            </Button>
-          </form>
-          {msg !== '' && (
-            <Alert severity="error" className={classes.message}>
-              {msg}
-            </Alert>
-          )}
-        </div>
-      </Paper>
+              <Typography className="title" variant="h6">
+                Login
+              </Typography>
+              <TextField
+                error={error.email}
+                type="input"
+                id="email"
+                variant="standard"
+                label="correo"
+                onChange={onChange}
+              />
+              <TextField
+                error={error.password}
+                type="password"
+                id="password"
+                variant="standard"
+                label="password"
+                onChange={onChange}
+              />
+              <Button
+                className="buttons-form"
+                variant="contained"
+                color="primary"
+              >
+                Sign In
+              </Button>
+              <br />
+              <Button
+                className="buttons-form"
+                variant="outlined"
+                color="primary"
+                onClick={() => history.push('/sign-up')}
+              >
+                <Link to="/sign-up" className={classes.anchor}>
+                  Sign Up
+                </Link>
+              </Button>
+            </form>
+            {msg !== '' && (
+              <Alert severity="error" className={classes.message}>
+                {msg}
+              </Alert>
+            )}
+          </div>
+        </Paper>
+      </div>
     </div>
   );
 };

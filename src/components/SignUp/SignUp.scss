@@ -1,7 +1,8 @@
 .title {
   text-align: center;
 }
-.login-container {
+
+.signup-container {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -9,8 +10,13 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
 .buttons-form {
   width: 50%;
+}
+.text-info {
+  color: black;
+  font-size: 17px;
 }
 
 form {
