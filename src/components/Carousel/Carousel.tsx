@@ -30,8 +30,6 @@ const Carousel: FC = () => {
     }
   };
 
-  console.log(movies);
-
   useEffect(() => {
     getUpcomingMovies();
   }, []);

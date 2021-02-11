@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
   detailItem: {
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   }
 });
 
@@ -54,7 +54,7 @@ const MovieItem: FC<Props> = ({ poster_path, title, rating, path }) => {
         className={classes.img}
       />
       <div className={classes.detailItem}>
-        <Typography color="primary" variant="h6" noWrap >
+        <Typography color="primary" variant="h6" noWrap>
           {title}
         </Typography>
         <Typography color="textPrimary" variant="subtitle1">

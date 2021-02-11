@@ -9,11 +9,10 @@ interface PublicRouterTypes {
   restProps: any;
 }
 
-const PublicRouter: FC<any> = ({
-  component: Component,
-  ...restProps
-}) => {
-  const { auth: { isLogged }}  = useAuth();
+const PublicRouter: FC<any> = ({ component: Component, ...restProps }) => {
+  const {
+    auth: { isLogged }
+  } = useAuth();
 
   return (
     <Route

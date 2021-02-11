@@ -5,6 +5,12 @@
       "username": "fake_username",
       "email": "fakeemail@gmail.com",
       "password": "fakepass"
+    },
+    {
+      "username": "admin",
+      "email": "admin@admin.com",
+      "password": "admin123",
+      "id": 2
     }
   ]
 }

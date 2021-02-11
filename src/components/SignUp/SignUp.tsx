@@ -221,9 +221,7 @@ const SignUp: FC = () => {
                 Sign Up
               </Button>
               <br />
-              <p className="text-info">
-                Do you already have an account?
-              </p>
+              <p className="text-info">Do you already have an account?</p>
               <Button
                 className="buttons-form"
                 variant="outlined"

@@ -24,11 +24,15 @@ const Movies: FC = () => {
 
   return (
     <Container
-      style={{ backgroundColor: 'white', padding: '0px', height: 'auto' }}
+      style={{
+        backgroundColor: 'white',
+        padding: '0px',
+        height: 'auto',
+        marginTop: -20
+      }}
       className="container-movies"
       maxWidth="lg"
     >
-      <Search />
       <Section title="Featured">
         <Carousel />
       </Section>
