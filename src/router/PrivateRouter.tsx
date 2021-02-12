@@ -10,11 +10,10 @@ interface PrivateRouterTypes {
   restProps: any;
 }
 
-const PrivateRouter: FC<any> = ({
-  component: Component,
-  ...restProps
-}) => {
-  const { auth: { isLogged }}  = useAuth();
+const PrivateRouter: FC<any> = ({ component: Component, ...restProps }) => {
+  const {
+    auth: { isLogged }
+  } = useAuth();
 
   return (
     <>

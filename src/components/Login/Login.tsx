@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
-import LoginHook from '../../hooks/Login/login'
+import LoginHook from '../../hooks/Login/login';
 import { useAuth } from '../../hooks';
 import { db } from '../../environment/environment';
 import './Login.scss';
@@ -72,9 +72,9 @@ const Login: FC = () => {
       return;
     }
     setMsg('');
-    const [ user ] = response;
+    const [user] = response;
     delete user.password;
-    setAuth({user, isLogged: true});
+    setAuth({ user, isLogged: true });
     history.replace('/');
   };
   const onSumbit = (e: any) => {

@@ -6,22 +6,22 @@ export const themeOptions: ThemeOptions | any = {
     type: 'dark',
     primary: {
       main: '#22223b',
-      light: 'rgb(23, 23, 41)',
+      light: 'rgb(23, 23, 41)'
     },
     secondary: {
-      main: '#4a4e69',
+      main: '#4a4e69'
     },
     background: {
       default: 'rgb(23, 23, 41)',
-      paper: '#dee2e6',
+      paper: '#dee2e6'
     },
     text: {
       primary: '#4a4e69',
       secondary: '#c1c4de',
       disabled: '#8b8ea6',
-      hint: '#b8bbd6',
-    },
-  },
+      hint: '#b8bbd6'
+    }
+  }
 };
 
 export const theme = createMuiTheme(themeOptions);
